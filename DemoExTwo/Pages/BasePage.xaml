@@ -10,7 +10,7 @@
 
     <Page.Resources>
         <DataTemplate x:Key="materialTemplate">
-            <Border BorderBrush="Black" BorderThickness="1">
+            <Border BorderBrush="Black" BorderThickness="1" Background="White">
                 <StackPanel Height="100" Width="650" Margin="0, 10" Background="White" Orientation="Horizontal">
                     <Image Source="{Binding materialImage}" Height="90" Width="90" HorizontalAlignment="Left" Margin="3, 3"/>
                     <StackPanel Orientation="Vertical" Width="400" Margin="10,0,0,0">
@@ -30,8 +30,9 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="32*"/>
-            <RowDefinition Height="193*"/>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="339*"/>
+            <RowDefinition Height="47*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <TextBox x:Name="search" Height="30" Width="300" Margin="30, 0" FontFamily="Segoe Print" TextChanged="TextBox_TextChanged"/>
@@ -47,5 +48,8 @@
             <ComboBox x:Name="filter" Height="30" Width="150" Margin="30, 0" SelectionChanged="filter_SelectionChanged"/>
         </StackPanel>
         <ListView x:Name="materialList" ItemTemplate="{DynamicResource materialTemplate}" Grid.Row="1"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            
+        </StackPanel>
     </Grid>
 </Page>
