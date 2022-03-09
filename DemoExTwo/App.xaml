@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:DemoExTwo"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe Print"/>
+        </Style>
     </Application.Resources>
 </Application>
