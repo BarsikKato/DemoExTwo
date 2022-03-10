@@ -20,11 +20,13 @@ namespace DemoExTwo
     /// </summary>
     public partial class BasePage : Page
     {
+        PageNavigation pageNavigation = new PageNavigation();
         public BasePage()
         {
             InitializeComponent();
             UpdateList();
             FilterSetup();
+            DataContext = pageNavigation;
         }
 
         private void UpdateList()
@@ -77,7 +79,29 @@ namespace DemoExTwo
                 newList = newList.OrderBy(x => x.Cost).ToList();
             else if (sorting.SelectedIndex == 6)
                 newList = newList.OrderByDescending(x => x.Cost).ToList();
-            materialList.ItemsSource = newList;
+            materialsCount.Text = newList.Count + " из " + BaseConnect.baseModel.Material.ToList().Count;
+            pageNavigation.CountPage = 15;
+            pageNavigation.Countlist = newList.Count;
+            materialList.ItemsSource = newList.Skip(pageNavigation.CurrentPage * pageNavigation.CountPage - pageNavigation.CountPage).Take(pageNavigation.CountPage).ToList();
+        }
+
+        private void page_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+            switch (tb.Uid)
+            {
+                case "prev":
+                    pageNavigation.CurrentPage--;
+                    break;
+                case "next":
+                    pageNavigation.CurrentPage++;
+                    break;
+                default:
+                    pageNavigation.CurrentPage = Convert.ToInt32(tb.Text);
+                    break;
+            }
+            UnitedChange();
+            //txtCurrentPage.Text = "Текущая страница: " + (pageNavigation.CurrentPage).ToString();
         }
     }
 }

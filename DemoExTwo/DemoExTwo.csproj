@@ -75,6 +75,7 @@
     </Compile>
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Classes\Material.cs" />
+    <Compile Include="Classes\PageNavigation.cs" />
     <Compile Include="Material.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
