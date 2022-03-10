@@ -1,0 +1,18 @@
+﻿<Window x:Class="DemoExTwo.ChangeMinCount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoExTwo"
+        mc:Ignorable="d"
+        Title="ChangeMinCount" Height="231.148" Width="236.885">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock>Введите новое количество:</TextBlock>
+            <TextBox x:Name="countBox" PreviewTextInput="countBox_PreviewTextInput" Height="30" Width="150"/>
+            <Button x:Name="save" Width="80" Margin="0,10" Click="save_Click">Сохранить</Button>
+            <Button x:Name="cancel" Width="80" Click="cancel_Click">Отмена</Button>
+        </StackPanel>
+
+    </Grid>
+</Window>

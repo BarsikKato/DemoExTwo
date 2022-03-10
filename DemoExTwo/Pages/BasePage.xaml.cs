@@ -103,5 +103,25 @@ namespace DemoExTwo
             UnitedChange();
             //txtCurrentPage.Text = "Текущая страница: " + (pageNavigation.CurrentPage).ToString();
         }
+
+        private void materialList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (materialList.SelectedItems.Count > 1)
+                changeMinCount.Visibility = Visibility.Visible;
+            else
+                changeMinCount.Visibility = Visibility.Hidden;
+        }
+
+        private void changeMinCount_Click(object sender, RoutedEventArgs e)
+        {
+            List<Material> selectedMaterials = new List<Material>();
+            foreach(Material item in materialList.SelectedItems)
+            {
+                selectedMaterials.Add(item);
+            }
+            ChangeMinCount changeMinCount = new ChangeMinCount(selectedMaterials);
+            changeMinCount.ShowDialog();
+            UnitedChange();
+        }
     }
 }
