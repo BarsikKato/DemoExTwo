@@ -24,6 +24,7 @@ namespace DemoExTwo
         {
             this.selectedList = selectedList;
             InitializeComponent();
+            countBox.Text = selectedList.OrderByDescending(x => x.MinCount).First().MinCount.ToString();
         }
 
         private void save_Click(object sender, RoutedEventArgs e)

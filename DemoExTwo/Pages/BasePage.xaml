@@ -11,7 +11,7 @@
     <Page.Resources>
         <DataTemplate x:Key="materialTemplate">
             <Border BorderBrush="Black" BorderThickness="1" Background="{Binding MaterialColor}">
-                <StackPanel Height="100" Width="650" Margin="0, 10" Background="White" Orientation="Horizontal">
+                <StackPanel Height="100" Width="650" Margin="0, 10" Background="White" Orientation="Horizontal" Tag="{Binding ID}">
                     <Image Source="{Binding MaterialImage}" Height="90" Width="90" HorizontalAlignment="Left" Margin="3, 3"/>
                     <StackPanel Orientation="Vertical" Width="400" Margin="10,0,0,0">
                         <StackPanel Orientation="Horizontal" Margin="0,10, 0, 0">
@@ -48,7 +48,7 @@
             <ComboBox x:Name="filter" Height="30" Width="150" Margin="30, 0" SelectionChanged="filter_SelectionChanged"/>
         </StackPanel>
         <TextBlock x:Name="materialsCount" Grid.Row="0" HorizontalAlignment="Right" Margin="5,15"/>
-        <ListView x:Name="materialList" ItemTemplate="{DynamicResource materialTemplate}" Grid.Row="1" SelectionChanged="materialList_SelectionChanged"/>
+        <ListView x:Name="materialList" ItemTemplate="{DynamicResource materialTemplate}" Grid.Row="1" SelectionChanged="materialList_SelectionChanged" MouseDoubleClick="materialList_MouseDoubleClick"/>
 
         <Button x:Name="changeMinCount" Grid.Row="2" HorizontalAlignment="Left" Height="30" Visibility="Hidden" Margin="10, 0" Click="changeMinCount_Click">Изменить минимальное количество на ...</Button>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Background="White">

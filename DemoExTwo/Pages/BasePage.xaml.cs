@@ -123,5 +123,13 @@ namespace DemoExTwo
             changeMinCount.ShowDialog();
             UnitedChange();
         }
+
+        private void materialList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedMaterial = (Material)materialList.SelectedItem;
+            AddMaterial addMaterial = new AddMaterial(selectedMaterial);
+            addMaterial.ShowDialog();
+            UnitedChange();
+        }
     }
 }
