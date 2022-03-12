@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:DemoExTwo"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="BasePage">
+      Title="Черновик">
 
     <Page.Resources>
         <DataTemplate x:Key="materialTemplate">
