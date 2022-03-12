@@ -17,10 +17,10 @@ namespace DemoExTwo
     /// <summary>
     /// Логика взаимодействия для AddMaterial.xaml
     /// </summary>
-    public partial class AddMaterial : Window
+    public partial class ChangeMaterial : Window
     {
         Material selectedMaterial;
-        public AddMaterial(Material selectedMaterial)
+        public ChangeMaterial(Material selectedMaterial)
         {
             InitializeComponent();
             this.selectedMaterial = selectedMaterial;
@@ -28,11 +28,14 @@ namespace DemoExTwo
             matType.DisplayMemberPath = "Title";
             suppliers.ItemsSource = BaseConnect.baseModel.Supplier.ToList();
             suppliers.DisplayMemberPath = "Title";
+            addedSuppliers.DisplayMemberPath = "Title";
             LoadMaterial();
         }
 
         private void LoadMaterial()
         {
+            imagePath.Text = selectedMaterial.Image;
+            matImage.Source = new BitmapImage(new Uri(imagePath.Text, UriKind.Relative));
             matTitle.Text = selectedMaterial.Title;
             matType.SelectedItem = selectedMaterial.MaterialType;
             countInStock.Text = selectedMaterial.CountInStock.ToString();
@@ -42,13 +45,14 @@ namespace DemoExTwo
             costPerUnit.Text = (selectedMaterial.Cost/selectedMaterial.CountInPack).ToString();
             foreach(var supplier in selectedMaterial.Supplier)
             {
-                suppliers.SelectedItems.Add(supplier);
+                addedSuppliers.Items.Add(supplier);
             }
         }
 
-        private void BAddOrUp_Click(object sender, RoutedEventArgs e)
+        private void change_Click(object sender, RoutedEventArgs e)
         {
             var changedMaterial = BaseConnect.baseModel.Material.Find(selectedMaterial.ID);
+            changedMaterial.Image = imagePath.Text;
             changedMaterial.Title = matTitle.Text;
             changedMaterial.MaterialTypeID = ((MaterialType)matType.SelectedItem).ID;
             changedMaterial.CountInPack = Convert.ToInt32(countInPack.Text);
@@ -57,9 +61,15 @@ namespace DemoExTwo
             changedMaterial.MinCount = Convert.ToInt32(minCount.Text);
             changedMaterial.Cost = (decimal)(Convert.ToInt32(countInPack.Text) * Convert.ToDouble(costPerUnit.Text));
             changedMaterial.Description = description.Text;
-            foreach(var supplier in suppliers.SelectedItems)
+            foreach(Supplier supplier in addedSuppliers.Items)
             {
-                changedMaterial.Supplier.Add((Supplier)supplier);
+                if(changedMaterial.Supplier.Where(x => x.ID == supplier.ID).ToList().Count == 0)
+                    changedMaterial.Supplier.Add(supplier);
+            }
+            foreach (Supplier supplier in changedMaterial.Supplier)
+            {
+                if(!addedSuppliers.Items.Contains(supplier))
+                    changedMaterial.Supplier.Remove(supplier);
             }
             try
             {
@@ -94,6 +104,27 @@ namespace DemoExTwo
         private void cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void addSupplier_Click(object sender, RoutedEventArgs e)
+        {
+            if (suppliers.SelectedIndex >= 0)
+                if (!addedSuppliers.Items.Contains(suppliers.SelectedItem))
+                    addedSuppliers.Items.Add(suppliers.SelectedItem);
+                else
+                    MessageBox.Show("Данный поставщик уже добавлен.");
+            else
+                MessageBox.Show("Выберите поставщика.");
+        }
+
+        private void addedSuppliers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            addedSuppliers.Items.Remove(addedSuppliers.SelectedItem);
+        }
+
+        private void imagePath_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            matImage.Source = new BitmapImage(new Uri(imagePath.Text, UriKind.Relative));
         }
     }
 }

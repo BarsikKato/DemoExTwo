@@ -114,8 +114,8 @@
     <Compile Include="Supplier.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Windows\AddMaterial.xaml.cs">
-      <DependentUpon>AddMaterial.xaml</DependentUpon>
+    <Compile Include="Windows\ChangeMaterial.xaml.cs">
+      <DependentUpon>ChangeMaterial.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ChangeMinCount.xaml.cs">
       <DependentUpon>ChangeMinCount.xaml</DependentUpon>
@@ -136,7 +136,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\AddMaterial.xaml">
+    <Page Include="Windows\ChangeMaterial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

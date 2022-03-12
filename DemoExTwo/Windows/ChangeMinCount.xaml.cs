@@ -33,8 +33,7 @@ namespace DemoExTwo
             {
                 MessageBox.Show("Количество не может быть меньше 1!");
                 return;
-            }
-                
+            }  
             foreach(Material item in selectedList)
             {
                 BaseConnect.baseModel.Material.Where(x => x.ID == item.ID).FirstOrDefault().MinCount = Convert.ToInt32(countBox.Text);

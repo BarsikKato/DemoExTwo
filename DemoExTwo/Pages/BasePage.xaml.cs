@@ -127,7 +127,7 @@ namespace DemoExTwo
         private void materialList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var selectedMaterial = (Material)materialList.SelectedItem;
-            AddMaterial addMaterial = new AddMaterial(selectedMaterial);
+            ChangeMaterial addMaterial = new ChangeMaterial(selectedMaterial);
             addMaterial.ShowDialog();
             UnitedChange();
         }
