@@ -131,5 +131,12 @@ namespace DemoExTwo
             addMaterial.ShowDialog();
             UnitedChange();
         }
+
+        private void addMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            AddMaterial addMaterial = new AddMaterial();
+            addMaterial.ShowDialog();
+            UnitedChange();
+        }
     }
 }

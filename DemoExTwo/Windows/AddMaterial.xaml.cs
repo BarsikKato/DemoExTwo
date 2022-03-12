@@ -17,36 +17,16 @@ namespace DemoExTwo
     /// <summary>
     /// Логика взаимодействия для AddMaterial.xaml
     /// </summary>
-    public partial class ChangeMaterial : Window
+    public partial class AddMaterial : Window
     {
-        Material selectedMaterial;
-        public ChangeMaterial(Material selectedMaterial)
+        public AddMaterial()
         {
             InitializeComponent();
-            this.selectedMaterial = selectedMaterial;
             matType.ItemsSource = BaseConnect.baseModel.MaterialType.ToList();
             matType.DisplayMemberPath = "Title";
             suppliers.ItemsSource = BaseConnect.baseModel.Supplier.ToList();
             suppliers.DisplayMemberPath = "Title";
             addedSuppliers.DisplayMemberPath = "Title";
-            LoadMaterial();
-        }
-
-        private void LoadMaterial()
-        {
-            imagePath.Text = selectedMaterial.Image;
-            matImage.Source = new BitmapImage(new Uri(imagePath.Text, UriKind.Relative));
-            matTitle.Text = selectedMaterial.Title;
-            matType.SelectedItem = selectedMaterial.MaterialType;
-            countInStock.Text = selectedMaterial.CountInStock.ToString();
-            unit.Text = selectedMaterial.Unit;
-            countInPack.Text = selectedMaterial.CountInPack.ToString();
-            minCount.Text = selectedMaterial.MinCount.ToString();
-            costPerUnit.Text = (selectedMaterial.Cost/selectedMaterial.CountInPack).ToString();
-            foreach(var supplier in selectedMaterial.Supplier)
-            {
-                addedSuppliers.Items.Add(supplier);
-            }
         }
 
         private void change_Click(object sender, RoutedEventArgs e)
@@ -56,25 +36,25 @@ namespace DemoExTwo
                 MessageBox.Show("Все поля должны быть заполнены!");
                 return;
             }
-            var changedMaterial = BaseConnect.baseModel.Material.Find(selectedMaterial.ID);
-            changedMaterial.Image = imagePath.Text;
-            changedMaterial.Title = matTitle.Text;
-            changedMaterial.MaterialTypeID = ((MaterialType)matType.SelectedItem).ID;
-            changedMaterial.CountInPack = Convert.ToInt32(countInPack.Text);
-            changedMaterial.Unit = unit.Text;
-            changedMaterial.CountInStock = Convert.ToInt32(countInStock.Text);
-            changedMaterial.MinCount = Convert.ToInt32(minCount.Text);
-            changedMaterial.Cost = (decimal)(Convert.ToInt32(countInPack.Text) * Convert.ToDouble(costPerUnit.Text));
-            changedMaterial.Description = description.Text;
-            foreach(Supplier supplier in addedSuppliers.Items)
+            var newMaterial = new Material();
+            newMaterial.Image = imagePath.Text;
+            newMaterial.Title = matTitle.Text;
+            newMaterial.MaterialTypeID = ((MaterialType)matType.SelectedItem).ID;
+            newMaterial.CountInPack = Convert.ToInt32(countInPack.Text);
+            newMaterial.Unit = unit.Text;
+            newMaterial.CountInStock = Convert.ToInt32(countInStock.Text);
+            newMaterial.MinCount = Convert.ToInt32(minCount.Text);
+            newMaterial.Cost = (decimal)(Convert.ToInt32(countInPack.Text) * Convert.ToDouble(costPerUnit.Text));
+            newMaterial.Description = description.Text;
+            foreach (Supplier supplier in addedSuppliers.Items)
             {
-                if(changedMaterial.Supplier.Where(x => x.ID == supplier.ID).ToList().Count == 0)
-                    changedMaterial.Supplier.Add(supplier);
+                if (newMaterial.Supplier.Where(x => x.ID == supplier.ID).ToList().Count == 0)
+                    newMaterial.Supplier.Add(supplier);
             }
-            foreach (Supplier supplier in changedMaterial.Supplier)
+            foreach (Supplier supplier in newMaterial.Supplier)
             {
-                if(!addedSuppliers.Items.Contains(supplier))
-                    changedMaterial.Supplier.Remove(supplier);
+                if (!addedSuppliers.Items.Contains(supplier))
+                    newMaterial.Supplier.Remove(supplier);
             }
             try
             {
