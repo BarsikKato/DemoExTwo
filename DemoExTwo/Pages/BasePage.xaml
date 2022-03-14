@@ -49,10 +49,10 @@
         </StackPanel>
         <TextBlock x:Name="materialsCount" Grid.Row="0" HorizontalAlignment="Right" Margin="0,15,5,15" Width="0"/>
         <ListView x:Name="materialList" ItemTemplate="{DynamicResource materialTemplate}" Grid.Row="1" SelectionChanged="materialList_SelectionChanged" MouseDoubleClick="materialList_MouseDoubleClick"/>
-        <StackPanel Grid.Row="2" Margin="10,10,0,10" HorizontalAlignment="Left" Orientation="Horizontal" Width="785">
-            <Button x:Name="addMaterial" HorizontalAlignment="Left" Height="30" Click="addMaterial_Click">Добавить материал</Button>
-            <Button x:Name="changeMinCount" Height="30" HorizontalAlignment="Left" Visibility="Hidden" Click="changeMinCount_Click">Изменить минимальное количество на ...</Button>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="250,0,0,0" Background="White">
+        <StackPanel Grid.Row="2" HorizontalAlignment="Left" Orientation="Horizontal" Width="785" Background="#FEA9AB">
+            <Button x:Name="addMaterial" HorizontalAlignment="Left" Height="30" Click="addMaterial_Click" Margin="10,0,0,0">Добавить материал</Button>
+            <Button x:Name="changeMinCount" Height="30" HorizontalAlignment="Left" Visibility="Hidden" Click="changeMinCount_Click" Margin="10,0,0,0">Изменить минимальное количество на ...</Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="250,10,0,10">
                 <TextBlock Name="txtPrev" Uid="prev" Text="&lt;" MouseDown="page_MouseDown"/>
                 <TextBlock Name="txt1" Uid="1" Text="{Binding  Path = NPage[0], StringFormat={}{0,3}}" Visibility="{Binding Visible[0]}" FontWeight="{Binding Bold[0]}" MouseDown="page_MouseDown"/>
                 <TextBlock Name="txt2" Uid="2" Text="{Binding  Path = NPage[1], StringFormat={}{0,3}}" Visibility="{Binding Visible[1]}" FontWeight="{Binding Bold[1]}" MouseDown="page_MouseDown"/>

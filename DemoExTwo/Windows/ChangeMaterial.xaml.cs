@@ -139,5 +139,23 @@ namespace DemoExTwo
         {
             matImage.Source = new BitmapImage(new Uri(imagePath.Text, UriKind.Relative));
         }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult rsltMessageBox = MessageBox.Show("Вы уверены, что хотите удалить данный материал?", "Удаление материала", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if(rsltMessageBox == MessageBoxResult.Yes)
+                try
+                {
+                    var material = BaseConnect.baseModel.Material.Find(selectedMaterial.ID);
+                    BaseConnect.baseModel.Material.Remove(material);
+                    BaseConnect.baseModel.SaveChanges();
+                    MessageBox.Show("Материал был успешно удален!");
+                    Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Не удалось удалить материал!");
+                }
+        }
     }
 }

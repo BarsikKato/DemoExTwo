@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DemoExTwo"
         mc:Ignorable="d"
-        Title="Черновик" Height="450" Width="800">
+        Title="Черновик" Height="510" Width="800">
     <Grid>
-        <Frame x:Name="mainFrm"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="361*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Image Source="/Images/Черновик.png" HorizontalAlignment="Left" Margin="5" Height="60" Width="60"/>
+            <TextBlock FontSize="42">ЧЕРНОВИК</TextBlock>
+        </StackPanel>
+        
+        <Frame x:Name="mainFrm" Grid.Row="1"/>
     </Grid>
 </Window>

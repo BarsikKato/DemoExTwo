@@ -63,9 +63,10 @@
                     </GroupBox>
                 </StackPanel>
             </StackPanel>
-            <StackPanel>
-                <Button x:Name="change" Click="change_Click" HorizontalAlignment="Center" Width="70" Margin="10">Сохранить</Button>
-                <Button x:Name="cancel" Click="cancel_Click" HorizontalAlignment="Center" Width="70"  Margin="10">Отмена</Button>
+            <StackPanel Orientation="Vertical">
+                <Button x:Name="change" Click="change_Click" HorizontalAlignment="Center" Width="70" Margin="5">Сохранить</Button>
+                <Button x:Name="delete" Click="delete_Click" HorizontalAlignment="Center" Width="70" Margin="5">Удалить</Button>
+                <Button x:Name="cancel" Click="cancel_Click" HorizontalAlignment="Center" Width="70"  Margin="5">Отмена</Button>
             </StackPanel>
         </StackPanel>
     </Grid>
